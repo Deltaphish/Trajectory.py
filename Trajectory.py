@@ -1,8 +1,9 @@
+
 import matplotlib.pyplot as plt
 from pylab import *
 from math import sin, cos, radians, floor
 
-def tra(v, a, s):
+def tra(v, a, s, m):
     posix = [0]
     posiy = [s]
     posx=0
@@ -11,9 +12,11 @@ def tra(v, a, s):
     velx  = v * cos(angle) 
     vely  = v * sin(angle)
     while posy > 0:
-          posx = posx + velx/8
+          fd = (0.5 * float(m) * float((velx**2)) * 0.3 * 0.2)/8
+          posx = posx + velx/8 
           posy = posy + vely/8
           vely = vely - (9.8/8)
+          velx = velx - fd
           """posx = math.floor(posx)
           posy = math.floor(posy)"""
           posix.append(posx)
@@ -36,5 +39,6 @@ def tra(v, a, s):
     print(posiy)
 v_input = int(input('input your start velocity: '))
 a_input = int(input('input your launch angle: '))
-s_input = float(input('input your start heigth: '))    
-tra(v_input,a_input,s_input)
+s_input = float(input('input your start heigth: '))
+m_input = float(input('input the mass of the object in kg: '))    
+tra(v_input,a_input,s_input,m_input)
